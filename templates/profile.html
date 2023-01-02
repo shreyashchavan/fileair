@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-md-3">
+      <h3>Username: {{ user[0] }}</h3>
+      <h3>Email: {{ user[1] }}</h3>
+      {% if current_user.username == user[0] or current_user.email == user[1] %}
+      <i class="fa fa-cogs"></i><a href="{{url_for('reset')}}" style="text-decoration: none;"> Setting</a>
+      <i class="fa fa-sign-out" aria-hidden="true"></i><a href="{{url_for('logout')}}" style="text-decoration: none;">signout</a>
+      {%endif%}
+    </div>
+  </div>
+  <hr>
+  <h2 class="text-center mt-5">Shared files: by {{user[0]}}</h2>
+  <div class="row mt-5">
+    {% for file in files %}
+      <div class="col-sm-6 col-md-4 col-lg-3">
+        <div class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">{{ file[0] }}</h5>
+            <a href="/files/{{file[0]}}" download="true" class="btn btn-primary">Download</a>
+            <h6 class="card-subtitle mt-2 mb-2 text-muted">Downloads: {{file[1]}}</h6>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+{%endblock%}

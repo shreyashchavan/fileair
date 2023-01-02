@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <h1 class="text-center">{{ filename }}</h1>
+        <div class="text-center">
+          <button><a href="{{ url }}" download="true" class="btn btn-primary">Download</a></button>
+        </div>
+        <div class="card mt-3">
+            <div class="card-body">
+              File Type: {{ type }}
+            </div>
+          </div>
+        <div class="row mt-3">
+            <div class="col-6">
+             Uploaded By: <h4><a href="/profile/{{uploader}}" class="btn btn-link btn-block">{{ uploader }}</a></h4>
+            </div>
+            <div class="col-6">
+              Total Downloads: <h5 class="text-center">{{count}}</h5>
+            </div>
+          </div>
+      </div>
+    </div>
+  </div>
+{%endblock%}  

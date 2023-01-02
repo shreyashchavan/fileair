@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Login</h2>
+<hr>
+{% if msg %}
+        <div class="alert alert-info"><p>{{ msg }}</p></div>
+{% endif %}
+
+<div class="form">
+<form method="POST" action="{{ url_for('login') }}">
+    <label for="email">Email</label><br>
+    <input type="text" name="email"><br>
+    <label for="password">Password</label><br>
+    <input type="password" name="password"><br>
+    <input type="submit">
+</form>
+</div>
+<style>
+    .form{
+        display: flex;
+        justify-content: center;
+    }
+</style>
+{% endblock %}
+
+

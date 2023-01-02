@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<!-- Hero section -->
+<center>
+<div class="jumbotron jumbotron-fluid bg-dark text-light">
+    <div class="container">
+      <h1 class="display-4">Welcome to our File Sharing App</h1>
+      <p class="lead">Easily upload and download files from anywhere, anytime.</p>
+      {% if current_user.is_authenticated %}
+      <a href="{{url_for('all_files', page=1)}}" class="btn btn-primary btn-lg mt-5">Uploaded files</a><br><br>
+      {% endif %}
+      {% if current_user.is_authenticated==0 %}
+      <a href="{{url_for('register')}}" class="btn btn-primary btn-lg mt-5">register</a><br><br>
+      {% endif %}
+      <br>
+    </div>
+  </div>
+</center>
+  <hr>
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <i class=" card-img-top fa fa-cloud-upload fa-4x" aria-hidden="true" alt="Upload Icon"></i>
+          <div class="card-body">
+            <h5 class="card-title">Easy upload</h5>
+            <p class="card-text">Upload your files with just a few clicks. No need to register or log in.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <i class=" card-img-top fa fa-cloud-download fa-4x" aria-hidden="true" alt="download Icon"></i>
+          <div class="card-body">
+            <h5 class="card-title">Fast download</h5>
+            <p class="card-text">Quickly download any file from our server, no matter where you are.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card">
+          <i class=" card-img-top fa fa-shield fa-4x" aria-hidden="true" alt="securityIcon"></i>
+          <div class="card-body">
+            <h5 class="card-title">Secure storage</h5>
+            <p class="card-text">Your files are stored securely on our server and are accessible only to you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+<!-- Testimonials section -->
+<div class="container mt-5">
+    <h2 class="text-center mb-5">What our users are saying</h2>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <p class="card-text">"I love this app! It's so easy to use and the download speeds are amazing."</p>
+            <p class="text-muted text-right mb-0">- John</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <p class="card-text">"I use this app for all my file sharing needs. It's fast, reliable, and secure."</p>
+            <p class="text-muted text-right mb-0">- Jane</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card border-0 shadow-sm">
+          <div class="card-body">
+            <p class="card-text">"I was skeptical at first, but this app has exceeded my expectations. It's been a lifesaver for me."</p>
+            <p class="text-muted text-right mb-0">- Tom</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="jumbotron jumbotron-fluid bg-primary text-light text-center">
+    <div class="container">
+      <h2 class="display-4">Ready to get started?</h2>
+      <p class="lead">Sign up now and start sharing your files in minutes.</p>
+      {% if current_user.is_authenticated==0 %}
+      <a href="{{ url_for('register')}}" class="btn btn-light btn-lg mt-5">Sign up</a>
+      {%endif%}
+      {% if current_user.is_authenticated %}
+      <a href="/profile/{{ current_user.username}}" class="btn btn-light btn-lg mt-5">Already Registered</a>
+      {%endif%}
+      <br>
+      <br>
+    </div>
+  </div>
+  {% endblock %}

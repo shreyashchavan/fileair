@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container mt-5">
+    <center><h2>All files</h2></center>
+    <hr>
+    <div class="row">
+      {% for file in files %}
+        <div class="col-sm-6 col-md-4 col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{ file[1] }}</h5>
+              <a href="/files/{{file[1]}}" download="true" class="btn btn-primary">Download</a>
+              <p> Created At: {{ file[5]}}</p>
+              <p>File Type: {{file[6]}}</p>
+              <h4>Uploaded By: <a href="/profile/{{file[7]}}">{{ file[7]}}</h4></a>
+              <h5><i class="fa fa-cloud-download fa-1x" caption="Downloads"></i> {{ file[4] }}</h5>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+    <hr>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+        {% if page > 1 %}
+          <li class="page-item"><a class="page-link" href="/all_files/{{page-1}}">Previous</a></li>
+          {% endif %}
+          {% for i in range(1, pages+1) %}
+            {% if i == page %}
+              <li class="page-item active"><a class="page-link" href="{{ url_for('all_files', page=i) }}">{{i}}</a></li>
+            {% else %}
+              <li class="page-item"><a class="page-link" href="{{ url_for('all_files', page=i) }}">{{i}}</a></li>
+            {% endif %}
+          {% endfor %}
+          {% if page < pages %}
+          <li class="page-item"><a class="page-link" href="{{ url_for('all_files', page=page+1) }}">Next</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+      </div>
+{%endblock%}
